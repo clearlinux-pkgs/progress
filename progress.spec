@@ -4,7 +4,7 @@
 #
 Name     : progress
 Version  : 1.5
-Release  : 2
+Release  : 3
 URL      : https://files.pythonhosted.org/packages/38/ef/2e887b3d2b248916fc2121889ce68af8a16aaddbe82f9ae6533c24ff0d2b/progress-1.5.tar.gz
 Source0  : https://files.pythonhosted.org/packages/38/ef/2e887b3d2b248916fc2121889ce68af8a16aaddbe82f9ae6533c24ff0d2b/progress-1.5.tar.gz
 Summary  : Shows running coreutils basic commands and displays stats
