@@ -4,10 +4,10 @@
 #
 Name     : progress
 Version  : 1.5
-Release  : 13
+Release  : 14
 URL      : https://files.pythonhosted.org/packages/38/ef/2e887b3d2b248916fc2121889ce68af8a16aaddbe82f9ae6533c24ff0d2b/progress-1.5.tar.gz
 Source0  : https://files.pythonhosted.org/packages/38/ef/2e887b3d2b248916fc2121889ce68af8a16aaddbe82f9ae6533c24ff0d2b/progress-1.5.tar.gz
-Summary  : Shows running coreutils basic commands and displays stats
+Summary  : Easy to use progress bars
 Group    : Development/Tools
 License  : ISC
 Requires: progress-python = %{version}-%{release}
@@ -15,158 +15,11 @@ Requires: progress-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
 
 %description
-Easy progress reporting for Python
 ==================================
-
-|pypi|
-
-|demo|
-
-.. |pypi| image:: https://img.shields.io/pypi/v/progress.svg
-   :target: https://pypi.org/project/progress/
-.. |demo| image:: https://raw.github.com/verigak/progress/master/demo.gif
-   :alt: Demo
-
-Bars
-----
-
-There are 7 progress bars to choose from:
-
-- ``Bar``
-- ``ChargingBar``
-- ``FillingSquaresBar``
-- ``FillingCirclesBar``
-- ``IncrementalBar``
-- ``PixelBar``
-- ``ShadyBar``
-
-To use them, just call ``next`` to advance and ``finish`` to finish:
-
-.. code-block:: python
-
-    from progress.bar import Bar
-
-    bar = Bar('Processing', max=20)
-    for i in range(20):
-        # Do some work
-        bar.next()
-    bar.finish()
-
-or use any bar of this class as a context manager:
-
-.. code-block:: python
-
-    from progress.bar import Bar
-
-    with Bar('Processing', max=20) as bar:
-        for i in range(20):
-            # Do some work
-            bar.next()
-
-The result will be a bar like the following: ::
-
-    Processing |#############                   | 42/100
-
-To simplify the common case where the work is done in an iterator, you can
-use the ``iter`` method:
-
-.. code-block:: python
-
-    for i in Bar('Processing').iter(it):
-        # Do some work
-
-Progress bars are very customizable, you can change their width, their fill
-character, their suffix and more:
-
-.. code-block:: python
-
-    bar = Bar('Loading', fill='@', suffix='%(percent)d%%')
-
-This will produce a bar like the following: ::
-
-    Loading |@@@@@@@@@@@@@                   | 42%
-
-You can use a number of template arguments in ``message`` and ``suffix``:
-
-==========  ================================
-Name        Value
-==========  ================================
-index       current value
-max         maximum value
-remaining   max - index
-progress    index / max
-percent     progress * 100
-avg         simple moving average time per item (in seconds)
-elapsed     elapsed time in seconds
-elapsed_td  elapsed as a timedelta (useful for printing as a string)
-eta         avg * remaining
-eta_td      eta as a timedelta (useful for printing as a string)
-==========  ================================
-
-Instead of passing all configuration options on instatiation, you can create
-your custom subclass:
-
-.. code-block:: python
-
-    class FancyBar(Bar):
-        message = 'Loading'
-        fill = '*'
-        suffix = '%(percent).1f%% - %(eta)ds'
-
-You can also override any of the arguments or create your own:
-
-.. code-block:: python
-
-    class SlowBar(Bar):
-        suffix = '%(remaining_hours)d hours remaining'
-        @property
-        def remaining_hours(self):
-            return self.eta // 3600
-
-
-Spinners
-========
-
-For actions with an unknown number of steps you can use a spinner:
-
-.. code-block:: python
-
-    from progress.spinner import Spinner
-
-    spinner = Spinner('Loading ')
-    while state != 'FINISHED':
-        # Do some work
-        spinner.next()
-
-There are 5 predefined spinners:
-
-- ``Spinner``
-- ``PieSpinner``
-- ``MoonSpinner``
-- ``LineSpinner``
-- ``PixelSpinner``
-
-Installation
-============
-
-Download from PyPi
-
-.. code-block:: shell
-
-    pip install progress
-
-
-Other
-=====
-
-There are a number of other classes available too, please check the source or
-subclass one of them to create your own.
-
-
-License
-=======
-
-progress is licensed under ISC
+        
+        |pypi|
+        
+        |demo|
 
 %package python
 Summary: python components for the progress package.
@@ -196,15 +49,14 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583203232
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1618931918
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
