@@ -4,7 +4,7 @@
 #
 Name     : progress
 Version  : 1.6
-Release  : 22
+Release  : 23
 URL      : https://files.pythonhosted.org/packages/2a/68/d8412d1e0d70edf9791cbac5426dc859f4649afc22f2abbeb0d947cf70fd/progress-1.6.tar.gz
 Source0  : https://files.pythonhosted.org/packages/2a/68/d8412d1e0d70edf9791cbac5426dc859f4649afc22f2abbeb0d947cf70fd/progress-1.6.tar.gz
 Summary  : Easy to use progress bars
